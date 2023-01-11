@@ -1,0 +1,18 @@
+.feedbackBtn {
+  padding: 8px;
+  margin: 8px;
+  border: none;
+  border-radius: 8px;
+  box-shadow: 2px 2px 2px 1px rgba(0, 0, 0, 0.3);
+}
+
+
+.feedbackBtn:hover {
+    background-color: rgb(207, 204, 204);
+    
+}
+
+.feedbackBtn:active {
+    background-color: rgb(159, 159, 255);    
+}
+
