@@ -5,36 +5,43 @@ import { Statistic } from './Statistics/Statistics';
 import { Notification } from './Notification/Notification';
 
 export const Vouter = () => {
-  const [feedback, setFeedback] = useState({
-    good: 0,
-    neutral: 0,
-    bad: 0,
-  });
+  const [good, setGood] = useState(0);
+  const [neutral, setNeutral] = useState(0);
+  const [bad, setBad] = useState(0);
 
   const onLeaveFeedback = event => {
     const { name } = event.target;
 
-    setFeedback(prev => ({ ...prev, [name]: prev[name] + 1 }));
+    switch (name) {
+      case 'good':
+        setGood(good + 1);
+        break;
+      case 'neutral':
+        setNeutral(neutral + 1);
+        break;
+      case 'bad':
+        setBad(bad + 1);
+        break;
+
+      default:
+    }
   };
 
   const countTotalFeedback = () => {
-    const { good, neutral, bad } = feedback;
     return good + neutral + bad;
   };
 
   const countPositiveFeedbackPercentage = () => {
-    const { good } = feedback;
     if (countTotalFeedback() > 0) {
       return Math.floor((good / countTotalFeedback()) * 100);
     }
   };
 
-  const { good, neutral, bad } = feedback;
   return (
     <>
       <Section title="Please leave feedback">
         <FeedBackOptions
-          options={Object.keys(feedback)}
+          options={['good', 'neutral', 'bad']}
           onLeaveFeedback={onLeaveFeedback}
         />
       </Section>
@@ -55,4 +62,3 @@ export const Vouter = () => {
     </>
   );
 };
-
